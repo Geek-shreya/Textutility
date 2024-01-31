@@ -53,7 +53,7 @@ function App() {
               <About mode={mode} changeMode={changeMode} />
             </Route>
             <Route exact path="/">
-              <Textarea heading="Enter text to analyze" mode={mode} changeMode={changeMode} showAlert={showAlert}/>
+              <Textarea heading="Try TextUtility - Enter text to analyze" mode={mode} changeMode={changeMode} showAlert={showAlert}/>
             </Route>
           </Switch>
      </div>

@@ -24,6 +24,7 @@ export default function Textarea(props) {
     let getText = document.querySelector("#floatingTextarea");
     getText.select()
     navigator.clipboard.writeText(getText.value)
+    document.getSelection().removeAllRanges()
     props.showAlert("Text is copied to clipboard", "success");
   }
 
@@ -42,16 +43,16 @@ export default function Textarea(props) {
             </textarea>
         </div>
 
-        <button type="button" className="btn btn-dark m-3" onClick={handleUpper}>Convert to Uppercase</button>
-        <button type="button" className="btn btn-dark m-3" onClick={handleLower}>Convert to Lowercase</button>
-        <button type="button" className="btn btn-dark m-3" onClick={handleClear}>Clear Text</button>
-        <button type="button" className="btn btn-dark m-3" onClick={handleCopy}>Copy Text</button>
+        <button disabled={text.length===0} type="button" className="btn btn-dark m-3" onClick={handleUpper}>Convert to Uppercase</button>
+        <button disabled={text.length===0} type="button" className="btn btn-dark m-3" onClick={handleLower}>Convert to Lowercase</button>
+        <button disabled={text.length===0} type="button" className="btn btn-dark m-3" onClick={handleClear}>Clear Text</button>
+        <button disabled={text.length===0} type="button" className="btn btn-dark m-3" onClick={handleCopy}>Copy Text</button>
 
     </div>
     <div className='container my-2' style={{ color: props.mode==='dark'?'whitesmoke':'black'}}>
       <h2>Text Summary</h2>
-      <p>{text.split(" ").length} words and {text.length} characters</p>
-      <p>{(0.008) * (text.split(" ").length)} Minutes Read</p>  
+      <p>{text.split(" ").filter((ele)=>{return ele.length!==0}).length} words and {text.length} characters</p>
+      <p>{(0.008) * (text.split(" ").filter((ele)=>{return ele.length!==0}).length)} Minutes Read</p>  
       {/* 1 min = 125 words .   1 word = 1/125 = 0.008 min */}
     </div>
     </>
