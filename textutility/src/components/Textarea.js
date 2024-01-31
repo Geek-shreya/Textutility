@@ -21,10 +21,11 @@ export default function Textarea(props) {
   }
 
   const handleCopy = () =>{
-    let getText = document.querySelector("#floatingTextarea");
-    getText.select()
-    navigator.clipboard.writeText(getText.value)
-    document.getSelection().removeAllRanges()
+    // let getText = document.querySelector("#floatingTextarea");
+    // getText.select()
+    // navigator.clipboard.writeText(getText.value)
+    // document.getSelection().removeAllRanges()
+    navigator.clipboard.writeText(text)
     props.showAlert("Text is copied to clipboard", "success");
   }
 
@@ -51,7 +52,7 @@ export default function Textarea(props) {
     </div>
     <div className='container my-2' style={{ color: props.mode==='dark'?'whitesmoke':'black'}}>
       <h2>Text Summary</h2>
-      <p>{text.split(" ").filter((ele)=>{return ele.length!==0}).length} words and {text.length} characters</p>
+      <p>{text.split(/\s+/).filter((ele)=>{return ele.length!==0}).length} words and {text.length} characters</p>
       <p>{(0.008) * (text.split(" ").filter((ele)=>{return ele.length!==0}).length)} Minutes Read</p>  
       {/* 1 min = 125 words .   1 word = 1/125 = 0.008 min */}
     </div>
